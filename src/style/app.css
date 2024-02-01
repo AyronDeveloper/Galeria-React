@@ -1,176 +1,256 @@
-@import url('https://fonts.googleapis.com/css2?family=Gabarito&family=Noto+Serif:ital@1&family=Open+Sans:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gabarito&family=Noto+Serif:ital@1&family=Open+Sans:wght@500&family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
-body{
-    font-family: 'Open Sans', sans-serif;
-    background-color: #111;
+html{
+    font-size: 10px;
+}
+.app__title{
+    margin: 1.5rem 0;
+    text-align: center;
+    text-shadow:-1px -1px 3px #000,
+                -1px 1px 3px #000,
+                1px -1px 3px #000,
+                1px 1px 3px #000;
+    font-size: 6rem;
     color: #fff;
 }
-.contenedor-agregar{
-    margin-top: 25px;
+.container__add{
+    width: 100%;
 }
-.boton{
-    border: solid 1px;
+.add__link{
     display: block;
     margin: 0 auto;
-    max-width: 150px;
-    padding: 10px 0;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    border: solid 2px;
+    border-radius: 25px;
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
-}
-.boton.agregar{
-    border: none;
-    background-color: #88FFDB;
-    color: #111;
-    font-size: 16px;
-}
-.boton.agregar:hover{
-    background-color: #D1FFF1;
-}
-.titulo{
-    text-align: center;
-    font-size: 64px;
-    margin-bottom: 10px;
-    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #00D8FF;
     color: #fff;
+    transition: all 200ms ease-in-out;
 }
-form{
-    display: block;
-    width: 500px;
-    margin: 0 auto;
-    background-color: #CBCBCB;
-    padding: 30px;
-}
-textarea{
-    width: 99%;
-    resize: none;
+.add__link:hover{
     background-color: #fff;
-    color: #111;
-    outline: none;
+    color: #00D8FF;
 }
-.contenedor-img-cargada{
-    margin-top: 10px;
-}
-.img-cargada{
-    display: block;
-    width: 250px;
+.container__notimg{
+    border-radius: 15px;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.5);
     margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
 }
-.labelImagen{
+.notimg__text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4rem;
+    margin: 1rem 0;
+}
+@media screen and (max-width:450px) {
+    .app__title{
+        font-size: 4rem;
+    }
+}
+
+/* Agregar Imagen */
+.error{
+    position: relative;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    color: #ff0000;
+}
+.error__ico{
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    font-size: 2rem;
+}
+.error__text{
+    padding-left: 2.5rem;
+}
+.container__form{
+    width: 100%;
+}
+.form__image_add{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.form__input{
+    position: relative;
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+.form__label_img{
     display: block;
-    background-color: #e84118;
-    border-radius: 5px;
+    position: relative;
     width: 150px;
-    height: 40px;
-    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 4rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #56d2d6;
+    transition: all 200ms ease-in-out;
+}
+.label__icon{
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    font-size: 2.5rem;
+}
+.container__prev_img{
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    color: #fff;
-}
-.labelImagen:hover{
-    background-color: #BD0000;
-}
-.labelImagen svg{
-    margin-right: 7px;
-    font-size: 36px;
-}
-input[type="file"]{
-    display: none;
-}
-.cotenedoreAgregar{
-    display: flex;
-    margin-top: 10px;
-    align-items: center;
-}
-.btnAgregar{
-    display: inline-flex;
-    height: 50px;
-    padding: 0;
-    background-color: #009578;
-    border: none;
-    outline: none;
-    border-radius: 5px;
+    margin: 0 auto;
+    max-width: 300px;
+    height: 300px;
     overflow: hidden;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
 }
-.btnAgregar:hover{
-    background-color: #008168;
+.img__prev{
+    display: block;
+    width: 100%;
+    object-fit: cover;
 }
-.span-boton, .span-svg{
+.form__input_img{
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+}
+.form__label{
+    font-size: 2rem;
+}
+.form__textarea{
+    display: block;
+    width: 100%;
+    height: 100px;
+    outline: none;
+    padding: 1rem;
+    resize: none;
+}
+.container__btn_add{
+    margin-left: 2rem;
+}
+.btn__add{
+   display: inline-flex; 
+   margin-top: 1rem;
+   margin-bottom: 1rem;
+   height: 50px;
+   padding: 0;
+   background-color: #00D8FF;
+   border: none;
+   border-radius: 5px;
+   overflow: hidden;
+   font-size: 1.5rem;
+   font-weight: 500;
+   cursor: pointer;
+}
+.btn__text, .btn__ico{
     display: inline-flex;
     align-items: center;
     padding: 0 24px;
     color: #fff;
     height: 100%;
 }
-.span-svg{
-    background-color: rgba(0, 0, 0, 0.08);
+.btn__ico{
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.contenedor-atras{
-    margin-top: 20px;
+.container__back{
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
-.atras{
-    margin-left: 475px;
+.btn__back{
+    display: block;
+    border: solid 1px;
+    border-radius: 25px;
+    text-align: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 2rem;
+    padding: 1rem;
+    background-color: #687a7e;
     color: #fff;
+    transition: all 200ms ease-in-out;
 }
-.atras:hover{
-    color: #FF7C00;
+.btn__back:hover{
+    background-color: #fff;
+    border: solid 1px;
+    color: #687a7e;
 }
-.titulo-descripcion{
-    color: #111;
-    font-size: 20px;
+
+/* contenedor de imagenes */
+.container__general{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
 }
-.separacion{
-    margin-top: 20px;
-}
-.contenedor-general{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
-    gap: 20px;
+.container__image{
+    display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    border: solid 1px #c2c2c2;
+    margin: 1.5rem;
 }
-.contenedor-info{
-    width: 400px;
-    margin-top: 20px;
+.container__image:hover .image__info{
+    opacity: 1;
 }
-.contenedorDoble{
-    display: flex;
+.image__img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
 }
-.contenedor-info .img{
-    display: block;
-    width: 400px;
-}
-.btn-delete{
-    width: 50px;
-    height: 50px;
-    font-size: 36px;
-    border: solid 3px;
-    border-color: #BD0000;
-    background-color: #fff;
-    color: #BD0000;
+.image__info{
     position: absolute;
-
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all 200ms ease-in-out;
 }
-.btn-delete:hover{
-    border-color: #fff;
-    background-color: #BD0000;
+.image__delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    color: #ff0000;
+    background-color: #fff;
+    border: solid 1px;
+}
+.image__delete:hover{
     color: #fff;
+    background-color: #ff0000;
 }
-.contenedor-info .descrip{
-    background-color: #CBCBCB;
-    width: 95%;
-    padding: 10px;
-    color: #111;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+.delete__ico{
+    font-size: 2rem;
+}
+.image__description{
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 1rem;
 }

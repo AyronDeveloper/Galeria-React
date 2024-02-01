@@ -14,31 +14,31 @@ const IndexGaleria = () => {
   }
 
   return (
-    <>
-      <div className='titulo'>Album de Foto con React</div>
-      <div className='contenedor-agregar'>
-        <Link to={"/agregar"} className='boton agregar'>Nueva Imagen</Link>
+    <main>
+      <Logos/>
+      <div className='app__title'>Album de Foto con React</div>
+      <div className='container__add'>
+        <Link to={"/agregar"} className='add__link'>Nueva Imagen</Link>
       </div>
       {invocarImagenes.imagenes==""?
-      <div className='separacion'>
-        <div className='titulo'>No tienes imagenes</div>
-        <div className='titulo'><BsImages/></div>
+      <div className='container__notimg'>
+        <span className='notimg__text'>No tienes imagenes</span>
+        <span className='notimg__text'><BsImages/></span>
       </div>
       :
-      <div className='contenedor-general'>
+      <div className='container__general'>
         {invocarImagenes.imagenes.map(imagen=>(
-          <div className='contenedor-info' key={imagen.id}>
-            <div className='contenedorDoble'>
-              <img className='img' src={imagen.imagen} alt="" />
-              <button className='btn-delete' onClick={()=>handleClickEliminar(imagen.id)}><MdDelete/></button>
+          <div className='container__image' key={imagen.id}>
+            <img className='image__img' src={imagen.imagen} alt="img" />
+            <div className='image__info'>
+              <button className='image__delete' onClick={()=>handleClickEliminar(imagen.id)}><MdDelete className='delete__ico'/></button>
+              <div className='image__description'>{imagen.descripcion}</div>
             </div>
-            <div className='descrip'>{imagen.descripcion}</div>
           </div>
         ))}
       </div>
       }
-      <Logos/>
-    </>
+    </main>
   )
 }
 

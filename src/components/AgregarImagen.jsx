@@ -3,14 +3,17 @@ import { useContextImagenes } from '../context/ContextImagenes'
 import { Link, useNavigate } from 'react-router-dom'
 import {MdOutlineAddPhotoAlternate} from "react-icons/md"
 import {VscAdd} from "react-icons/vsc"
+import { IoAlertCircleOutline } from "react-icons/io5"
 import Logos from './Logos'
+import sinimg from '../img/sinimg.jpg'
 
 const AgregarImagen = () => {
+  const invocarImagenes=useContextImagenes()
 
   const [imagen, setImagen]=useState("")
+  const [imagenError, setImagenError]=useState("")
   const [descripcion, setDescripcion]=useState("")
   const navigate=useNavigate()
-  const invocarImagenes=useContextImagenes()
 
   const handleChangeFile=(e)=>{
     const element = e.target
@@ -30,46 +33,51 @@ const AgregarImagen = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault()
-
-    const nuevaImagen={
-      id:crypto.randomUUID(),
-      imagen: imagen,
-      descripcion: descripcion
+    if(imagen!=""){
+      setImagenError("")
+      const nuevaImagen={
+        id:crypto.randomUUID(),
+        imagen: imagen,
+        descripcion: descripcion
+      }
+  
+      invocarImagenes.createImagen(nuevaImagen)
+      navigate("/")
+    }else{
+      setImagenError("Elije una imagen")
     }
-
-    invocarImagenes.createImagen(nuevaImagen)
-    navigate("/")
   }
 
   return (
-    <>
+    <main>
       <Logos/>
       <div>
-        <div className='titulo'>Agrega una nueva imagen</div>
+        <div className='app__title'>Agrega una nueva imagen</div>
       </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-            <div>
-              <label className='labelImagen' htmlFor="foto"><MdOutlineAddPhotoAlternate/>Imagen</label>
-              <input type="file" id='foto' onChange={handleChangeFile} accept='image/*'/>
+      <div className='container__form'>
+        <form onSubmit={handleSubmit} className='form__image_add'>
+            <div className='form__input'>
+              <label className='form__label_img' htmlFor="foto"><MdOutlineAddPhotoAlternate className='label__icon'/> <span>Imagen</span></label>
+              <input className='form__input_img' type="file" id='foto' onChange={handleChangeFile} accept='image/*'/>
             </div>
-            <div className='contenedor-img-cargada'>{!!imagen ? <img className='img-cargada' loading='lazy' src={imagen}/>:""}</div>
-            <div>
-              <label className="titulo-descripcion"  htmlFor="descripcion">Descripcion</label>
-              <textarea id="descripcion" cols="30" rows="10" onChange={handleChange} placeholder='Que nos quiere decir tu imagen'>{descripcion}</textarea>
+            <div className='container__prev_img'>{!!imagen ? <img className='img__prev' loading='lazy' src={imagen}/>:<img className='img__prev' loading='lazy' src={sinimg} alt='img_prev'/>}</div>
+            {imagenError!=""?<div className='error'><IoAlertCircleOutline className='error__ico'/> <span className='error__text'>{imagenError}</span></div>:""}
+            <div className='form__input'>
+              <label className="form__label" htmlFor="descripcion">Descripcion (opcional)</label>
+              <textarea className='form__textarea' id="descripcion" onChange={handleChange} placeholder='Que nos quiere decir tu imagen' value={descripcion}></textarea>
             </div>
-            <div className='cotenedoreAgregar'>
-              <button className='btnAgregar'>
-                <span className='span-boton'>Agregar Album</span> 
-                <span className='span-svg'><VscAdd/></span>
+            <div className='container__btn_add'>
+              <button className='btn__add'>
+                <span className='btn__text'>Agregar Album</span> 
+                <span className='btn__ico'><VscAdd/></span>
               </button>
             </div>
         </form>
-        <div className="contenedor-atras">
-          <Link to={"/"} className='atras'>Atras</Link>
+        <div className="container__back">
+          <Link to={"/"} className='btn__back'>Atras</Link>
         </div>
       </div>
-    </>
+    </main>
   )
 }
 
